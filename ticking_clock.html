@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ticking Clock</title>
+    <script src="./Intro/node_modules/react/dist/react.js"></script>
+    <script src="./Intro/node_modules/react-dom/dist/react-dom.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/javascript">
+    var date;
+    setInterval(function(){
+      date = new Date()
+      const timestring = React.createElement('p',null,`The time is: ${date.toLocaleTimeString()}`)
+      ReactDOM.render(timestring,document.getElementById('app'))
+    },1000)
+    </script>
+  </body>
+</html>
