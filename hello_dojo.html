@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Dojo!</title>
+    <script src="./Intro/node_modules/react/dist/react.js"></script>
+    <script src="./Intro/node_modules/react-dom/dist/react-dom.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="app2"></div>
+    <div id="app3"></div>
+    <script type="text/javascript">
+      const header = React.createElement('h1',null,'Hello Dojo!')
+      const header2 = React.createElement('h2',null,'Things I need to do:')
+      const toDoList = ['Learn React','Climb Mt. Everest','Run a marathon','Feed the dogs']
+      const list = []
+      for (var i = 0; i < toDoList.length; i++) {
+        const listItem = React.createElement('li',null,toDoList[i])
+        list.push(listItem)
+      }
+      const ul = React.createElement('ul',null,list)
+
+      ReactDOM.render(header,document.getElementById('app'))
+      ReactDOM.render(header2,document.getElementById('app2'))
+      ReactDOM.render(ul,document.getElementById('app3'))
+    </script>
+  </body>
+</html>
