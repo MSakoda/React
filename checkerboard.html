@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Checkerboard</title>
+    <script src="./Intro/node_modules/react/dist/react.js"></script>
+    <script src="./Intro/node_modules/react-dom/dist/react-dom.js"></script>
+  </head>
+  <body>
+    <div id='app'></div>
+    <style media="screen">
+      .cell {
+        width:20px;
+        height:20px;
+        display:inline-block;
+      }
+      .row {
+        height: 20px;
+      }
+      .colorA {
+        background:red;
+      }
+      .colorB {
+        background:black;
+      }
+    </style>
+    <script type="text/javascript">
+      var userInput = prompt("please enter a number of rows")
+      console.log("userInput is:",userInput);
+
+      const cell = (props) => {
+        return React.createElement('div',{className:`cell ${props.color}`},)
+      }
+
+
+      const row = (props) => {
+        var a;
+        var b;
+        if (props.startColor == "red"){
+          a = 'colorA'
+          b = 'colorB'
+        } else {
+          a = 'colorB'
+          b = 'colorA'
+        }
+        var cells = [];
+        for (var i = 0; i < userInput; i++) {
+          var color;
+          if (i%2 == 0){
+            color = a
+          } else {
+            color = b
+          }
+          newCell = React.createElement(cell,{color:color},)
+          cells.push(newCell)
+        }
+        return React.createElement('div',{className:`row`},cells)
+      }
+
+      var rows = []
+
+      const Checkerboard = (props) => {
+        for (var i = 0; i < userInput; i++){
+          var color;
+          if (i%2 == 0){
+            color = 'red'
+          } else {
+            color = "black"
+          }
+          var newRow = React.createElement(row,{startColor:color},)
+          rows.push(newRow)
+        }
+        console.log("rows:",rows);
+        return React.createElement('div',null,rows)
+      }
+
+      const App = React.createElement(Checkerboard, null,)
+      ReactDOM.render(App,document.getElementById('app'))
+    </script>
+  </body>
+</html>
