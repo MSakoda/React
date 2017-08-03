@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Voting App!</title>
+    <script src="./Intro/node_modules/react/dist/react.js"></script>
+    <script src="./Intro/node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id='app'>
+    </div>
+    <div id="content"></div>
+    <style media="screen">
+      .item {
+        height:50px;
+        width:250px;
+        border:1px solid black;
+        text-align: center;
+        position: relative;
+        line-height: 50px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .circle {
+        border-radius: 50%;
+        border:1px solid black;
+        height:30px;
+        width: 30px;
+        display: inline-block;
+        position: absolute;
+        left: 5px;
+        top:7px;
+      }
+      .plus {
+        font-size: 2em;
+        color:green;
+        position: absolute;
+        right: 5px;
+        cursor: pointer;
+      }
+      #app {
+        text-align: center;
+      }
+      #content {
+        text-align: center;
+        margin-left:auto;
+        margin-right: auto;
+      }
+    </style>
+    <script type="text/babel">
+
+      function handleClick(){
+        alert('you clicked a plus')
+      }
+
+      const List = (props) => {
+        const listItems = props.items.map((itemString) => {
+          return <div className='item' key={itemString}>
+            <div className="circle"></div>
+            {itemString}
+            <span onClick={handleClick} className="plus">+</span>
+          </div>
+        });
+        return (
+          <div>
+            {listItems}
+          </div>
+        )
+      }
+
+
+      ReactDOM.render(
+        <List items= { ['React', 'Redux', 'Node', 'Express'] } />,
+        document.getElementById('content')
+      );
+      ReactDOM.render(<List items= { ['Helen','Marcus','Teddy','Julio','Aimee']} />,document.getElementById('content'))
+
+      ReactDOM.render(
+        <h1>Vote Your JS Library!</h1>,
+        document.getElementById('app')
+      );
+
+    </script>
+  </body>
+</html>
