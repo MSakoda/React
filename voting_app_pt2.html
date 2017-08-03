@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Voting App pt2</title>
+    <script src="./Intro/node_modules/react/dist/react.js"></script>
+    <script src="./Intro/node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+    var appStyle = {
+      textAlign:'center'
+    }
+
+    var libraryStyle = {
+      border:"1px solid black",
+      display:'inline-block',
+      width:'250px',
+      textAlign:'center',
+      fontSize:'2em',
+      position:'relative'
+    }
+
+    var circle = {
+      borderRadius:'50%',
+      border:'1px solid black',
+      width:'30px',
+      height:'24px',
+      display:'inline-block',
+      fontSize:'15px',
+      paddingTop:'6px',
+      position:'absolute',
+      left:'5px',
+      top:'3px'
+    }
+
+    var plus = {
+      color:'green',
+      position:'absolute',
+      right:'5px',
+      top:'0px',
+      verticalAlign:'top',
+      cursor:'pointer'
+    }
+
+
+
+    class Library extends React.Component {
+      constructor(props){
+        super(props);
+        this.state = {
+          votes:0
+        }
+      }
+      render(){
+        return (
+          <div>
+            <div style={libraryStyle}>
+              <div style={circle}>{this.state.votes}</div>
+              {this.props.library}
+              <div onClick={()=> this.setState({votes:this.state.votes+1})} style={plus}>+</div>
+            </div>
+          </div>
+        )
+      }
+    }
+
+    class Libraries extends React.Component {
+      render(){
+        var libraries = ["React","Vue","Angular","Ember","Backbone","jQuery"]
+        var libraryArr = []
+
+        for (var i = 0; i < libraries.length;i++){
+          libraryArr.push(<Library key={libraries[i]} library={libraries[i]}/>)
+        }
+
+        console.log("libraryArr is:",libraryArr[0]);
+
+
+        return(
+          <div>
+            {libraryArr}
+          </div>
+        )
+      }
+    }
+
+
+      class App extends React.Component {
+        render(){
+          return(
+            <div style={appStyle}>
+              <h1>Vote Your JS Libary!</h1>
+              <Libraries />
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(<App/>,document.getElementById('app'))
+    </script>
+  </body>
+</html>
